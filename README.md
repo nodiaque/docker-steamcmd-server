@@ -1,15 +1,7 @@
 # SteamCMD in Docker optimized for Unraid
-This Docker will download and install SteamCMD. It will also install ARK:SurvivalAscended and run it (Normal server startup of ARK can take a long time!).
-
-**WARNING:** You have to set the value vm.max_map_count to at least 256000 on the host as root with the command:  
-`echo 265000 > /proc/sys/vm/max_map_count`  
-To make that value persistent on Unraid please use a User Script that runs on startup or with the command from above or put it in your `go` file.
-
-ATTENTION: First Startup can take very long since it downloads the gameserver files!
+This Docker will download and install SteamCMD. It will also install Enshrouded and run it.
 
 Update Notice: Simply restart the container if a newer version of the game is available.
-
-You can also run multiple servers with only one SteamCMD directory!
 
 ## Example Env params for CS:Source
 | Name | Value | Example |
