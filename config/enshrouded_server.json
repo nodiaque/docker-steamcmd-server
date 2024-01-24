@@ -1,5 +1,5 @@
 {
-	"name": "Nodiaque Enshrouded Server",
+	"name": "Enshrouded Server",
 	"password": "Docker",
 	"saveDirectory": "./savegame",
 	"logDirectory": "./logs",
