@@ -3,6 +3,9 @@ This Docker will download and install SteamCMD. It will also install Enshrouded 
 
 **Update Notice:** Simply restart the container if a newer version of the game is available.
 
+Config file must be placed in /serverdata/serverfiles root folder (check path mapping below)
+The game will download enshrouded_server.json default config file if you don't provide yours (check in config folder for template).
+
 ## Env params
 | Name | Value | Example |
 | --- | --- | --- |
