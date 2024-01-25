@@ -25,7 +25,7 @@ The game will download enshrouded_server.json default config file if you don't p
 ## Run example
 ```
 docker run --name Enshrouded -d \
-	-p 15636-15637:15636-15637 \
+	-p 15636-15637:15636-15637/udp \
 	--env 'GAME_ID=2278520' \
 	--env 'UID=99' \
 	--env 'GID=100' \
