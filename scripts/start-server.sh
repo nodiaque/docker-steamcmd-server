@@ -97,5 +97,5 @@ if [ ! -f ${SERVER_DIR}/enshrouded_server.exe ]; then
   sleep infinity
 else
   cd ${SERVER_DIR}
-  wine64 ${SERVER_DIR}/enshrouded_server.exe
+  wine64 ${SERVER_DIR}/enshrouded_server.exe ${GAME_PARAMS}
 fi
