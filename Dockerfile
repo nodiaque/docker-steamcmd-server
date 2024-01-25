@@ -1,10 +1,10 @@
 FROM ich777/winehq-baseimage
 
-LABEL org.opencontainers.image.authors="admin@minenet.at"
+LABEL org.opencontainers.image.authors="nodiaque-github@abinemail.com"
 LABEL org.opencontainers.image.source="https://github.com/nodiaque/docker-steamcmd-server"
 
 RUN apt-get update && \
-	apt-get -y install --no-install-recommends lib32gcc-s1 lib32stdc++6 lib32z1 screen xvfb winbind && \
+	apt-get -y install --no-install-recommends lib32gcc-s1 lib32stdc++6 lib32z1 winbind && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/serverdata"

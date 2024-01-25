@@ -78,12 +78,12 @@ chmod -R ${DATA_PERM} ${DATA_DIR}
 
 if [ ! -f ${SERVER_DIR}/enshrouded_server.json ]; then
         echo "---'enshrouded_server.json' not found, downloading template---"
-    cd ${SERVER_DIR}/
+        cd ${SERVER_DIR}
         if wget -q -nc --show-progress --progress=bar:force:noscroll https://raw.githubusercontent.com/nodiaque/docker-steamcmd-server/enshrouded/config/enshrouded_server.json ; then
                 echo "---Sucessfully downloaded 'enshrouded_server.json'---"
         else
                 echo "---Something went wrong, can't download 'enshrouded_server.json', will use game default file ---"
-	cp /opt/config/enshrouded_server.json ${SERVER_DIR}/enshrouded_server.json
+                cp /opt/config/enshrouded_server.json ${SERVER_DIR}/enshrouded_server.json
         fi
 else
         echo "---'enshrouded_server.json' found---"
@@ -96,21 +96,6 @@ if [ ! -f ${SERVER_DIR}/enshrouded_server.exe ]; then
   echo "---Something went wrong, can't find the executable, putting container into sleep mode!---"
   sleep infinity
 else
-  cd ${SERVER_DIR}/
-  wine64 enshrouded_server.exe &
-  echo "Waiting for logs..."
-  ATTEMPT=0
-  sleep 2
-  while [ ! -f "${SERVER_DIR}/logs/enshrouded_server.log" ]; do
-    ((ATTEMPT++))
-    if [ $ATTEMPT -eq 10 ]; then
-      echo "No log files found after 20 seconds, putting container into sleep mode!"
-      sleep infinity
-    else
-      sleep 2
-      echo "Waiting for logs..."
-    fi
-  done
-  /opt/scripts/start-watchdog.sh &
-  tail -n 9999 -f ${SERVER_DIR}/logs/enshrouded_server.log
+  cd ${SERVER_DIR}
+  wine64 ${SERVER_DIR}/enshrouded_server.exe ${GAME_PARAMS}
 fi
