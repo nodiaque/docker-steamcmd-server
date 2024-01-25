@@ -96,6 +96,6 @@ if [ ! -f ${SERVER_DIR}/enshrouded_server.exe ]; then
   echo "---Something went wrong, can't find the executable, putting container into sleep mode!---"
   sleep infinity
 else
-  cd ${SERVER_DIR}/
+  cd ${SERVER_DIR}
   wine64 ${SERVER_DIR}/enshrouded_server.exe
 fi
