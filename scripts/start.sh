@@ -26,7 +26,7 @@ chown -R ${UID}:${GID} ${DATA_DIR}
 
 echo "---Starting...---"
 term_handler() {
-	kill -SIGTERM $(pidof enshrouded_server.exe)
+	kill -SIGINT $(pidof enshrouded_server.exe)
 	tail --pid=$(pidof enshrouded_server.exe) -f 2>/dev/null
 	exit 143;
 }
