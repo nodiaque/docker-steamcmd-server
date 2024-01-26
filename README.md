@@ -36,6 +36,8 @@ docker run --name Enshrouded -d \
 	--env 'GAME_ID=2278520' \
 	--env 'UID=99' \
 	--env 'GID=100' \
+	--env 'SERVERNAME=Enshrouded Docker' \
+	--env 'SERVERPASS=Docker' \
 	--volume /path/to/steamcmd:/serverdata/steamcmd \
 	--volume /path/to/enshroudedfile:/serverdata/serverfiles \
 	nodiaque/steamcmd:enshrouded
