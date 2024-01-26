@@ -107,8 +107,9 @@ if [ ! "${QUERYPORT}" == "" ]; then
 	sed -i "/queryPort/c\        \"queryPort\": \"${QUERYPORT}\"," ${SERVER_DIR}/enshrouded_server.json
 fi
 
-echo "---Config file:---"
-cat ${SERVER_DIR}/enshrouded_server.json
+#echo "---Config file:---"
+#cat ${SERVER_DIR}/enshrouded_server.json
+
 echo "---Server ready---"
 
 echo "---Start Server---"
