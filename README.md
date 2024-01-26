@@ -22,7 +22,7 @@ The game will download enshrouded_server.json default config file if you don't p
 | SERVERNAME | Name of the server. Overwrite config file | Enshrouded Docker |
 | SERVERPASS | Password for the server. Overwrite config file | Docker |
 | UDPGAMEPORT | UDP Game port used by the server. Overwrite config file. Be sure to change port mapping in the run command | 15636 |
-| UDPQUERYPORT | UDP Query port used by the server. Overwrite config file. Be sure to change port mapping in the run command | 15637 |
+| QUERYPORT | UDP Query port used by the server. Overwrite config file. Be sure to change port mapping in the run command | 15637 |
 | UID | User Identifier | 99 |
 | GID | Group Identifier | 100 |
 | VALIDATE | Validates the game data | false |
