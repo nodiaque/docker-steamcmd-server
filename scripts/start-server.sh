@@ -88,27 +88,6 @@ if [ ! -f ${SERVER_DIR}/enshrouded_server.json ]; then
 else
         echo "---'enshrouded_server.json' found---"
 fi
-echo "---Configuring server---"
-if [ ! "${SERVERNAME}" == "" ]; then
-	echo "---Setting server name from var to ${SERVERNAME}"
-	sed -i "/name/c\        \"name\": \"${SERVERNAME}\"," ${SERVER_DIR}/enshrouded_server.json
-fi
-
-if [ ! "{$SERVERPASS}" == "" ]; then
-	echo "---Setting server password from var"
-	sed -i "/password/c\        \"password\": \"${SERVERPASS}\"," ${SERVER_DIR}/enshrouded_server.json
-fi
-if [ ! "${UDPGAMEPORT}" == "" ]; then
-	echo "---Setting server UDP Game port from var to ${UDPGAMEPORT}"
-	sed -i "/gamePort/c\        \"gamePort\": \"${UDPGAMEPORT}\"," ${SERVER_DIR}/enshrouded_server.json
-fi
-if [ ! "${QUERYPORT}" == "" ]; then
-	echo "---Setting server UDP query port from var to ${QUERYPORT}"
-	sed -i "/queryPort/c\        \"queryPort\": \"${QUERYPORT}\"," ${SERVER_DIR}/enshrouded_server.json
-fi
-
-#echo "---Config file:---"
-#cat ${SERVER_DIR}/enshrouded_server.json
 
 echo "---Server ready---"
 
