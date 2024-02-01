@@ -95,6 +95,7 @@ echo "---Start Server---"
 
 if [ "${BACKUP}" == "true" ]; then
   echo "---Starting Backup daemon---"
+  echo "Interval: ${BACKUP_INTERVAL} minutes and keep ${BACKUP_TO_KEEP} backups"
   if [ ! -d ${SERVER_DIR}/Backups ]; then
     mkdir -p ${SERVER_DIR}/Backups
   fi
