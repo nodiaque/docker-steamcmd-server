@@ -92,6 +92,15 @@ fi
 echo "---Server ready---"
 
 echo "---Start Server---"
+
+if [ "${BACKUP}" == "true" ]; then
+  echo "---Starting Backup daemon---"
+  if [ ! -d ${SERVER_DIR}/Backups ]; then
+    mkdir -p ${SERVER_DIR}/Backups
+  fi
+  /opt/scripts/start-backup.sh &
+fi
+
 if [ ! -f ${SERVER_DIR}/enshrouded_server.exe ]; then
   echo "---Something went wrong, can't find the executable, putting container into sleep mode!---"
   sleep infinity
@@ -99,3 +108,4 @@ else
   cd ${SERVER_DIR}
   wine64 ${SERVER_DIR}/enshrouded_server.exe ${GAME_PARAMS}
 fi
+
