@@ -34,7 +34,7 @@ The game will download enshrouded_server.json default config file if you don't p
 
 ## Run example
 ```
-docker run --name Enshrouded -d \
+docker run --name Enshrouded_Proton -d \
 	-p 15636-15637:15636-15637/udp \
 	--env 'GAME_ID=2278520' \
 	--env 'SERVER_NAME="Enshrouded Docker"' \
@@ -49,7 +49,7 @@ docker run --name Enshrouded -d \
 	--env 'GID=100' \
 	--volume /path/to/steamcmd:/serverdata/steamcmd \
 	--volume /path/to/enshroudedfile:/serverdata/serverfiles \
-	nodiaque/steamcmd:enshrouded
+	nodiaque/steamcmd:enshrouded_proton
 ```
 
 This Docker was mainly edited for better use with Unraid, if you don't use Unraid you should definitely try it!
