@@ -57,11 +57,12 @@ RUN useradd -d $DATA_DIR -s /bin/bash -g $GID -u $UID $USER && \
     && dbus-uuidgen --ensure=/etc/machine-id \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean \
-    && apt-get autoremove -y 
+    && apt-get autoremove -y
+
+RUN  echo "* hard nice -20" | tee -a /etc/security/limits.conf 
 
 RUN mkdir $DATA_DIR && \
-    chown -R $USER $DATA_DIR && \
-    ulimit -n 2048
+    chown -R $USER $DATA_DIR
 
 ADD /scripts/ /opt/scripts/
 ADD /config/ /opt/config/

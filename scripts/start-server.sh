@@ -94,14 +94,19 @@ fi
 echo "---Updating Enshrouded Server configuration---"
 tmpfile=$(mktemp)
 echo "---Server name: ${SERVER_NAME}"
-jq --arg n "$SERVER_NAME" '.name = $n' ${ENSHROUDED_CONFIG} > "$tmpfile" && mv "$tmpfile" $ENSHROUDED_CONFIG
+#sed -i "/name/c\  \"name\": \"${SERVER_NAME}\"," ${SERVER_DIR}/enshrouded_server.json
+jq --arg n "${SERVER_NAME}" '.name = $n' ${ENSHROUDED_CONFIG} > "$tmpfile" && mv "$tmpfile" $ENSHROUDED_CONFIG
 echo "---Server password: ${SERVER_PASSWORD}"
+#sed -i "/password/c\  \"password\": \"${SERVER_PASSWORD}\"," ${SERVER_DIR}/enshrouded_server.json
 jq --arg p "$SERVER_PASSWORD" '.password = $p' ${ENSHROUDED_CONFIG} > "$tmpfile" && mv "$tmpfile" $ENSHROUDED_CONFIG
 echo "---Game port: ${GAME_PORT}"
+#sed -i "/gamePort/c\  \"gamePort\": \"${GAME_PORT}\"," ${SERVER_DIR}/enshrouded_server.json
 jq --arg g "$GAME_PORT" '.gamePort = ($g | tonumber)' ${ENSHROUDED_CONFIG} > "$tmpfile" && mv "$tmpfile" $ENSHROUDED_CONFIG
 echo "---Query port: ${QUERY_PORT}"
+#sed -i "/queryPort/c\  \"queryPort\": \"${QUERY_PORT}\"," ${SERVER_DIR}/enshrouded_server.json
 jq --arg q "$QUERY_PORT" '.queryPort = ($q | tonumber)' ${ENSHROUDED_CONFIG} > "$tmpfile" && mv "$tmpfile" $ENSHROUDED_CONFIG
 echo "---Server slots: ${SERVER_SLOTS}"
+#sed -i "/slotCount/c\  \"slotCount\": \"${SERVER_SLOTS}\"," ${SERVER_DIR}/enshrouded_server.json
 jq --arg s "$SERVER_SLOTS" '.slotCount = ($s | tonumber)' ${ENSHROUDED_CONFIG} > "$tmpfile" && mv "$tmpfile" $ENSHROUDED_CONFIG
 
 
@@ -125,7 +130,7 @@ if [ ! -f ${SERVER_DIR}/enshrouded_server.exe ]; then
   echo "---Something went wrong, can't find the executable, putting container into sleep mode!---"
   sleep infinity
 else
-  ${ASTEAM_PATH}/compatibilitytools.d/GE-Proton${GE_PROTON_VERSION}/proton run ${SERVER_DIR}/enshrouded_server.exe &
+  ${ASTEAM_PATH}/compatibilitytools.d/GE-Proton${GE_PROTON_VERSION}/proton run ${SERVER_DIR}/enshrouded_server.exe ${GAME_PARAMS} &
   
   # Find pid for enshrouded_server.exe
   timeout=0

@@ -36,17 +36,17 @@ The game will download enshrouded_server.json default config file if you don't p
 ```
 docker run --name Enshrouded_Proton -d \
 	-p 15636-15637:15636-15637/udp \
-	--env 'GAME_ID=2278520' \
-	--env 'SERVER_NAME="Enshrouded Docker"' \
-	--env 'SERVER_PASSWORD="Docker"' \
-	--env 'GAME_PORT=15636' \
-	--env 'QUERY_PORT=15637' \
-	--env 'SERVER_SLOTS=16' \
-	--env 'BACKUP=true' \
-	--env 'BACKUP_INTERVAL=120' \
-	--env 'BACKUP_TO_KEEP=12' \
-	--env 'UID=99' \
-	--env 'GID=100' \
+	--env GAME_ID=2278520 \
+	--env SERVER_NAME="Enshrouded Docker" \
+	--env SERVER_PASSWORD="Docker" \
+	--env GAME_PORT=15636 \
+	--env QUERY_PORT=15637 \
+	--env SERVER_SLOTS=16 \
+	--env BACKUP=true \
+	--env BACKUP_INTERVAL=120 \
+	--env BACKUP_TO_KEEP=12 \
+	--env UID=99 \
+	--env GID=100 \
 	--volume /path/to/steamcmd:/serverdata/steamcmd \
 	--volume /path/to/enshroudedfile:/serverdata/serverfiles \
 	nodiaque/steamcmd:enshrouded_proton
