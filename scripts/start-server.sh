@@ -99,9 +99,6 @@ jq --arg n "${SERVER_NAME}" '.name = $n' ${ENSHROUDED_CONFIG} > "$tmpfile" && mv
 echo "---Server password: ${SERVER_PASSWORD}"
 #sed -i "/password/c\  \"password\": \"${SERVER_PASSWORD}\"," ${SERVER_DIR}/enshrouded_server.json
 jq --arg p "$SERVER_PASSWORD" '.password = $p' ${ENSHROUDED_CONFIG} > "$tmpfile" && mv "$tmpfile" $ENSHROUDED_CONFIG
-echo "---Game port: ${GAME_PORT}"
-#sed -i "/gamePort/c\  \"gamePort\": \"${GAME_PORT}\"," ${SERVER_DIR}/enshrouded_server.json
-jq --arg g "$GAME_PORT" '.gamePort = ($g | tonumber)' ${ENSHROUDED_CONFIG} > "$tmpfile" && mv "$tmpfile" $ENSHROUDED_CONFIG
 echo "---Query port: ${QUERY_PORT}"
 #sed -i "/queryPort/c\  \"queryPort\": \"${QUERY_PORT}\"," ${SERVER_DIR}/enshrouded_server.json
 jq --arg q "$QUERY_PORT" '.queryPort = ($q | tonumber)' ${ENSHROUDED_CONFIG} > "$tmpfile" && mv "$tmpfile" $ENSHROUDED_CONFIG
