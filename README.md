@@ -19,8 +19,6 @@ The game will download enshrouded_server.json default config file if you don't p
 | GAME_ID | The GAME_ID that the container downloads at startup. If you want to install a static or beta version of the game change the value to: '2278520 -beta YOURBRANCH' (without quotes, replace YOURBRANCH with the branch or version you want to install). | 2278520 |
 | GAME_PARAMS | Parameter to pass to server executable | blank |
 | SERVER_NAME | Name of the server | Enshrouded Docker |
-| SERVER_PASSWORD | Serevr password | Docker |
-| GAME_PORT | Game port | 15636 |
 | QUERY_PORT | Query Port | 15637 |
 | SERVER_SLOTS | Number of player slots | 16 |
 | BACKUP | Set this value to 'true' to enable the automated backup function from the container, you find the Backups in '.../palworld/Backups/'. Set to 'false' to disable the backup function. | true |
@@ -38,8 +36,6 @@ docker run --name Enshrouded_Proton -d \
 	-p 15636-15637:15636-15637/udp \
 	--env GAME_ID=2278520 \
 	--env SERVER_NAME="Enshrouded Docker" \
-	--env SERVER_PASSWORD="Docker" \
-	--env GAME_PORT=15636 \
 	--env QUERY_PORT=15637 \
 	--env SERVER_SLOTS=16 \
 	--env BACKUP=true \
