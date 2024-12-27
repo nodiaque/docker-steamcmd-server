@@ -2,9 +2,10 @@
 This Docker will download and install SteamCMD. It will also install Enshrouded and run it.  
   
 **Server Name:** Enshrouded Docker  
-**Password:** Docker  
   
 **Configuration:** The configuration is located at: ./enshrouded_server.json.  
+
+Start the docker once, let it create all the files. Once it's ready, stop, edit the config file and start again.
 
 **Update Notice:** Simply restart the container if a newer version of the game is available.  
   
