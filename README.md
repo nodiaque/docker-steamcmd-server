@@ -17,7 +17,7 @@ To enable RCon, you must forward port 27020.
 | --- | --- | --- |
 | STEAMCMD_DIR | Folder for SteamCMD | /serverdata/steamcmd |
 | SERVER_DIR | Folder for gamefile | /serverdata/serverfiles |
-| GAME_ID | The GAME_ID that the container downloads at startup. If you want to install a static or beta version of the game change the value to: '2278520 -beta YOURBRANCH' (without quotes, replace YOURBRANCH with the branch or version you want to install). | 2278520 |
+| GAME_ID | The GAME_ID that the container downloads at startup. | 2278520 |
 | GAME_PARAMS | Parameter to pass to server executable | blank |
 | MAPNAME | Select the map for the server. Either DNL_ALL or theshard | DNL_ALL |
 | SERVERNAME | Name of the server | DNLDocker |
