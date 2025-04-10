@@ -78,10 +78,10 @@ if [ -z "${PUBLIC_IP}" ]; then
   echo "--- No public set, trying to obtain it...---"
   PUBLIC_IP="$(wget -qO - ipv4.icanhazip.com)"
   if [ -z "${PUBLIC_IP}" ]; then
-    echo "---Can't get PublicIP, please set it manually in your PalWorldSettings.ini!---"
+    echo "---Can't get PublicIP, please use PUBLIC_IP env var and set your public IP!---"
     echo "Shutting down!"
   else
-    echo "---Sucessfully obtained PublicIP: ${PUBLIC_IP}, adding to PalWorldSettings.ini"
+    echo "---Sucessfully obtained PublicIP: ${PUBLIC_IP}"
     echo "---Prepare Server---"
     chmod -R ${DATA_PERM} ${DATA_DIR}
     echo "---Server ready---"
@@ -92,7 +92,7 @@ if [ -z "${PUBLIC_IP}" ]; then
     #  sleep infinity
     else
       cd ${SERVER_DIR}
-      wine64 ${SERVER_DIR}/DNL/Binaries/Win64/DNLServer.exe ${MAPNAME}?listen?SessionName=${SERVERNAME}?ServerPassword=${GAMEPASS}?ServerAdminPassword=${ADMINPASS}?Port=${GAMEPORT}?QueryPort=${QUERYPORT}?MaxPlayers=${MAXPLAYERS}?multihome=${PUBLIC_IP} ${GAME_PARAMS} -nosteamclient -game -server -log
+      wine64 ${SERVER_DIR}/DNL/Binaries/Win64/DNLServer.exe ${MAPNAME}?Multihome=${PUBLIC_IP}?listen?SessionName=${SERVERNAME}?ServerPassword=${GAMEPASS}?ServerAdminPassword=${ADMINPASS}?Port=${GAMEPORT}?QueryPort=${QUERYPORT}?MaxPlayers=${MAXPLAYERS} -server -log ${GAME_PARAMS}
     fi
   fi
 fi
