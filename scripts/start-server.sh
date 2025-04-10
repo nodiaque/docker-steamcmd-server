@@ -92,7 +92,7 @@ if [ -z "${PUBLIC_IP}" ]; then
     #  sleep infinity
     else
       cd ${SERVER_DIR}
-      wine64 ${SERVER_DIR}/DNL/Binaries/Win64/DNLServer.exe ${MAPNAME}?Multihome=${PUBLIC_IP}?listen?SessionName=${SERVERNAME}?ServerPassword=${GAMEPASS}?ServerAdminPassword=${ADMINPASS}?Port=${GAMEPORT}?QueryPort=${QUERYPORT}?MaxPlayers=${MAXPLAYERS} -server -log ${GAME_PARAMS}
+      wine64 ${SERVER_DIR}/DNL/Binaries/Win64/DNLServer.exe "${MAPNAME}?Multihome=${PUBLIC_IP}?listen?SessionName=${SERVERNAME}?ServerPassword=${GAMEPASS}?ServerAdminPassword=${ADMINPASS}?Port=${GAMEPORT}?QueryPort=${QUERYPORT}?MaxPlayers=${MAXPLAYERS}" -server -log ${GAME_PARAMS}
     fi
   fi
 fi
