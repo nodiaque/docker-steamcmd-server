@@ -1,15 +1,16 @@
 # SteamCMD in Docker optimized for Unraid
-This Docker will download and install SteamCMD. It will also install Enshrouded and run it.  
+This Docker will download and install SteamCMD. It will also install Dark and Light and run it.  
   
-**Server Name:** Enshrouded Docker  
+**Server Name:** DNLDocker  
 **Password:** Docker  
   
-**Configuration:** The configuration is located at: ./enshrouded_server.json.  
+**Configuration:** The configuration is located at: ./DNL/Saved/Config/WindowsServer/GameUserSettings.ini.  
 
 **Update Notice:** Simply restart the container if a newer version of the game is available.  
   
-Config file must be placed in /serverdata/serverfiles root folder (check path mapping below)  
-The game will download enshrouded_server.json default config file if you don't provide yours (check in config folder for template).  
+Run the server once and when it's started properly, stop and edit the config file
+
+To enable RCon, you must forward port 27020. 
 
 ## Env params
 | Name | Value | Example |
@@ -18,9 +19,14 @@ The game will download enshrouded_server.json default config file if you don't p
 | SERVER_DIR | Folder for gamefile | /serverdata/serverfiles |
 | GAME_ID | The GAME_ID that the container downloads at startup. If you want to install a static or beta version of the game change the value to: '2278520 -beta YOURBRANCH' (without quotes, replace YOURBRANCH with the branch or version you want to install). | 2278520 |
 | GAME_PARAMS | Parameter to pass to server executable | blank |
-| BACKUP | Set this value to 'true' to enable the automated backup function from the container, you find the Backups in '.../palworld/Backups/'. Set to 'false' to disable the backup function. | true |
-| BACKUP_INTERVAL | The backup interval in minutes (ATTENTION: The first backup will be triggered after the set interval in this variable after the start/restart of the container) | 120 |
-| BACKUPS_TO_KEEP | Number of backups to keep (by default set to 12 to keep the last backups of the last 24 hours) | 12 |
+| MAPNAME | Select the map for the server. Either DNL_ALL or theshard | DNL_ALL |
+| SERVERNAME | Name of the server | DNLDocker |
+| GAMEPASS | Server password | Docker |
+| ADMINPASS | Server admin pass | AdminDocker |
+| GAMEPORT | Game the port listen to. If changed, port mapping need also to be changed. Port mapping is range to GAMEPORT+1 | 7777 |
+| QUERYPORT | Query port for the game. Used to discover the server. If changed, port mapping need to be changed. The port mapping is range to QUERYPORT+1 tcp/upd | 27015 |
+| MAXPLAYERS | Maximum number of players in the game. | 127 |
+| PUBLIC_IP | Set public ip for the server to be discoverable. Will try to get it if not specified. | blank |
 | UID | User Identifier | 99 |
 | GID | Group Identifier | 100 |
 | VALIDATE | Validates the game data | false |
@@ -29,17 +35,22 @@ The game will download enshrouded_server.json default config file if you don't p
 
 ## Run example
 ```
-docker run --name Enshrouded -d \
-	-p 15636-15637:15636-15637/udp \
-	--env 'GAME_ID=2278520' \
-	--env 'BACKUP=true' \
-	--env 'BACKUP_INTERVAL=120' \
-	--env 'BACKUPS_TO_KEEP=12' \
+docker run --name DNL -d \
+	-p 27015-27016:27015-27016 \
+	-p 27015-27016:27015-27016/udp \
+	-p 7777-7778:7777-7778 \
+	-p 7777-7778:7777-7778/udp \
+	-p 27020:27020 \
+	--env 'GAME_ID=630230' \
+	--env 'ADMINPASS=AdminDocker' \
+	--env 'SERVERNAME=DNLDocker' \
+	--env 'MAPNAME=DNL_ALL' \
+	--env 'GAMEPASS=Docker' \
 	--env 'UID=99' \
 	--env 'GID=100' \
 	--volume /path/to/steamcmd:/serverdata/steamcmd \
-	--volume /path/to/enshroudedfile:/serverdata/serverfiles \
-	nodiaque/steamcmd:enshrouded
+	--volume /path/to/dnl:/serverdata/serverfiles \
+	nodiaque/steamcmd:dnl
 ```
 
 This Docker was mainly edited for better use with Unraid, if you don't use Unraid you should definitely try it!

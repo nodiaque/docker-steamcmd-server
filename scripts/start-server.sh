@@ -73,40 +73,27 @@ if [ ! -d ${SERVER_DIR}/WINE64/drive_c/windows ]; then
 else
   echo "---WINE properly set up---"
 fi
-echo "---Prepare Server---"
-chmod -R ${DATA_PERM} ${DATA_DIR}
 
-if [ ! -f ${SERVER_DIR}/enshrouded_server.json ]; then
-        echo "---'enshrouded_server.json' not found, downloading template---"
-        cd ${SERVER_DIR}
-        if wget -q -nc --show-progress --progress=bar:force:noscroll https://raw.githubusercontent.com/nodiaque/docker-steamcmd-server/enshrouded/config/enshrouded_server.json ; then
-                echo "---Sucessfully downloaded 'enshrouded_server.json'---"
-        else
-                echo "---Something went wrong, can't download 'enshrouded_server.json', will use game default file ---"
-                cp /opt/config/enshrouded_server.json ${SERVER_DIR}/enshrouded_server.json
-        fi
-else
-        echo "---'enshrouded_server.json' found---"
-fi
+if [ -z "${PUBLIC_IP}" ]; then
+  echo "--- No public set, trying to obtain it...---"
+  PUBLIC_IP="$(wget -qO - ipv4.icanhazip.com)"
+  if [ -z "${PUBLIC_IP}" ]; then
+    echo "---Can't get PublicIP, please set it manually in your PalWorldSettings.ini!---"
+    echo "Shutting down!"
+  else
+    echo "---Sucessfully obtained PublicIP: ${PUBLIC_IP}, adding to PalWorldSettings.ini"
+    echo "---Prepare Server---"
+    chmod -R ${DATA_PERM} ${DATA_DIR}
+    echo "---Server ready---"
 
-echo "---Server ready---"
-
-echo "---Start Server---"
-
-if [ "${BACKUP}" == "true" ]; then
-  echo "---Starting Backup daemon---"
-  echo "Interval: ${BACKUP_INTERVAL} minutes and keep ${BACKUPS_TO_KEEP} backups"
-  if [ ! -d ${SERVER_DIR}/Backups ]; then
-    mkdir -p ${SERVER_DIR}/Backups
+    echo "---Start Server---"
+    if [ ! -f ${SERVER_DIR}/DNL/Binaries/Win64/DNLServer.exe ]; then
+      echo "---Something went wrong, can't find the executable, stopping container!---"
+    #  sleep infinity
+    else
+      cd ${SERVER_DIR}
+      wine64 ${SERVER_DIR}/DNL/Binaries/Win64/DNLServer.exe ${MAPNAME}?listen?SessionName=${SERVERNAME}?ServerPassword=${GAMEPASS}?ServerAdminPassword=${ADMINPASS}?Port=${GAMEPORT}?QueryPort=${QUERYPORT}?MaxPlayers=${MAXPLAYERS}?multihome=${PUBLIC_IP} ${GAME_PARAMS} -nosteamclient -game -server -log
+    fi
   fi
-  /opt/scripts/start-backup.sh &
-fi
-
-if [ ! -f ${SERVER_DIR}/enshrouded_server.exe ]; then
-  echo "---Something went wrong, can't find the executable, putting container into sleep mode!---"
-  sleep infinity
-else
-  cd ${SERVER_DIR}
-  wine64 ${SERVER_DIR}/enshrouded_server.exe ${GAME_PARAMS}
 fi
 
