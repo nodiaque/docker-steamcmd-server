@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.authors="nodiaque-github@abinemail.com"
 LABEL org.opencontainers.image.source="https://github.com/nodiaque/docker-steamcmd-server"
 
 ENV HOME "/serverdata"
-ENV GE_PROTON_VERSION="8-30"
+ENV GE_PROTON_VERSION="10-28"
 ENV GE_PROTON_URL="https://github.com/GloriousEggroll/proton-ge-custom/releases/download/GE-Proton${GE_PROTON_VERSION}/GE-Proton${GE_PROTON_VERSION}.tar.gz"
 ENV DATA_DIR="/serverdata"
 ENV GAME_ID="2278520"
