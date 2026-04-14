@@ -76,24 +76,37 @@ fi
 echo "---Prepare Server---"
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
+if [ ! -f ${SERVER_DIR}/enshrouded_server.json ]; then
+        echo "---'enshrouded_server.json' not found, downloading template---"
+        cd ${SERVER_DIR}
+        if wget -q -nc --show-progress --progress=bar:force:noscroll https://raw.githubusercontent.com/nodiaque/docker-steamcmd-server/enshrouded/config/enshrouded_server.json ; then
+                echo "---Sucessfully downloaded 'enshrouded_server.json'---"
+        else
+                echo "---Something went wrong, can't download 'enshrouded_server.json', will use game default file ---"
+                cp /opt/config/enshrouded_server.json ${SERVER_DIR}/enshrouded_server.json
+        fi
+else
+        echo "---'enshrouded_server.json' found---"
+fi
+
 echo "---Server ready---"
 
 echo "---Start Server---"
-SERVER_EXE=$(find "$SERVER_DIR" -iname "WindroseServer-Win64-Shipping.exe" | head -n 1 || true)
 
-if [ -z "$SERVER_EXE" ]; then
-  echo "ERROR: Windrose server executable not found"
-  find "$SERVERDIR" -maxdepth 4
-  exit 1
+if [ "${BACKUP}" == "true" ]; then
+  echo "---Starting Backup daemon---"
+  echo "Interval: ${BACKUP_INTERVAL} minutes and keep ${BACKUPS_TO_KEEP} backups"
+  if [ ! -d ${SERVER_DIR}/Backups ]; then
+    mkdir -p ${SERVER_DIR}/Backups
+  fi
+  /opt/scripts/start-backup.sh &
 fi
 
-echo "Starting Windrose dedicated server"
-echo "Executable: $SERVER_EXE"
+if [ ! -f ${SERVER_DIR}/enshrouded_server.exe ]; then
+  echo "---Something went wrong, can't find the executable, putting container into sleep mode!---"
+  sleep infinity
+else
+  cd ${SERVER_DIR}
+  wine64 ${SERVER_DIR}/enshrouded_server.exe ${GAME_PARAMS}
+fi
 
-cd ${SERVER_DIR}
-wine64 "$SERVER_EXE" -log
-#exec wine64 "$SERVER_EXE" \
-#  -log \
-#  -MULTIHOME=0.0.0.0 \
-#  -PORT=$PORT \
-#  -QUERYPORT=$QUERYPORT
