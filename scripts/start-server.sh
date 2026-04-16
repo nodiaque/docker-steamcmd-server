@@ -70,6 +70,7 @@ if [ ! -d ${SERVER_DIR}/WINE64/drive_c/windows ]; then
   cd ${SERVER_DIR}
   winecfg > /dev/null 2>&1
   sleep 15
+  wineserver -k >/dev/null 2>&1
 else
   echo "---WINE properly set up---"
 fi
@@ -87,13 +88,11 @@ if [ -z "$SERVER_EXE" ]; then
   exit 1
 fi
 
-echo "Starting Windrose dedicated server"
-echo "Executable: $SERVER_EXE"
+echo "---Checking for old display lock files---"
+find /tmp -name ".X99*" -exec rm -f {} \; > /dev/null 2>&1
+chmod -R ${DATA_PERM} ${DATA_DIR}
 
+echo "---Start Server---"
 cd ${SERVER_DIR}
-wine64 "$SERVER_EXE" -log
-#exec wine64 "$SERVER_EXE" \
-#  -log \
-#  -MULTIHOME=0.0.0.0 \
-#  -PORT=$PORT \
-#  -QUERYPORT=$QUERYPORT
+xvfb-run --auto-servernum --server-args='-screen 0 640x480x24:32' wine64 ${SERVER_DIR}/R5/Binaries/Win64/WindroseServer-Win64-Shipping.exe -log
+
