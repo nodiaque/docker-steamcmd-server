@@ -56,7 +56,6 @@ fi
 
 export WINEARCH=win64
 export WINEPREFIX=/serverdata/serverfiles/WINE64
-export WINEDEBUG=-all
 echo "---Checking if WINE workdirectory is present---"
 if [ ! -d ${SERVER_DIR}/WINE64 ]; then
   echo "---WINE workdirectory not found, creating please wait...---"
@@ -79,11 +78,10 @@ chmod -R ${DATA_PERM} ${DATA_DIR}
 echo "---Server ready---"
 
 echo "---Start Server---"
-SERVER_EXE=$(find "$SERVER_DIR" -iname "WindroseServer-Win64-Shipping.exe" | head -n 1 || true)
+SERVER_EXE="${SERVER_DIR}/R5/Binaries/Win64/WindroseServer-Win64-Shipping.exe"
 
 if [ -z "$SERVER_EXE" ]; then
   echo "ERROR: Windrose server executable not found"
-  find "$SERVERDIR" -maxdepth 4
   exit 1
 fi
 
@@ -91,9 +89,4 @@ echo "Starting Windrose dedicated server"
 echo "Executable: $SERVER_EXE"
 
 cd ${SERVER_DIR}
-wine64 "$SERVER_EXE" -log
-#exec wine64 "$SERVER_EXE" \
-#  -log \
-#  -MULTIHOME=0.0.0.0 \
-#  -PORT=$PORT \
-#  -QUERYPORT=$QUERYPORT
+wine64 ${SERVER_EXE} -log

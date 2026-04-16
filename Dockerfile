@@ -4,7 +4,7 @@ LABEL org.opencontainers.image.authors="nodiaque-github@abinemail.com"
 LABEL org.opencontainers.image.source="https://github.com/nodiaque/docker-steamcmd-server"
 
 RUN apt-get update && \
-	apt-get -y install --no-install-recommends lib32gcc-s1 lib32stdc++6 lib32z1 winbind && \
+	apt-get -y install lib32gcc-s1 && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/serverdata"
@@ -20,6 +20,7 @@ ENV USERNAME=""
 ENV PASSWRD=""
 ENV USER="steam"
 ENV DATA_PERM=770
+ENV WINEDEBUG=-all
 
 RUN mkdir $DATA_DIR && \
 	mkdir $STEAMCMD_DIR && \
@@ -29,9 +30,7 @@ RUN mkdir $DATA_DIR && \
 	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
-ADD /config/ /opt/config/
 RUN chmod -R 770 /opt/scripts/
-RUN chmod -R 770 /opt/config/
 
 #Server Start
 ENTRYPOINT ["/opt/scripts/start.sh"]
