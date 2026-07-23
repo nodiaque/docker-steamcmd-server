@@ -22,14 +22,14 @@ if [ "${USERNAME}" == "" ]; then
   if [ "${VALIDATE}" == "true" ]; then
     echo "---Validating installation---"
     ${STEAMCMD_DIR}/steamcmd.sh \
-    +@sSteamCmdForcePlatformType windows \
+    +@sSteamCmdForcePlatformType linux \
     +force_install_dir ${SERVER_DIR} \
     +login anonymous \
     +app_update ${GAME_ID} validate \
     +quit
   else
     ${STEAMCMD_DIR}/steamcmd.sh \
-    +@sSteamCmdForcePlatformType windows \
+    +@sSteamCmdForcePlatformType linux \
     +force_install_dir ${SERVER_DIR} \
     +login anonymous \
     +app_update ${GAME_ID} \
@@ -39,14 +39,14 @@ else
   if [ "${VALIDATE}" == "true" ]; then
     echo "---Validating installation---"
     ${STEAMCMD_DIR}/steamcmd.sh \
-    +@sSteamCmdForcePlatformType windows \
+    +@sSteamCmdForcePlatformType linux \
     +force_install_dir ${SERVER_DIR} \
     +login ${USERNAME} ${PASSWRD} \
     +app_update ${GAME_ID} validate \
     +quit
   else
     ${STEAMCMD_DIR}/steamcmd.sh \
-    +@sSteamCmdForcePlatformType windows \
+    +@sSteamCmdForcePlatformType linux \
     +force_install_dir ${SERVER_DIR} \
     +login ${USERNAME} ${PASSWRD} \
     +app_update ${GAME_ID} \
@@ -54,31 +54,31 @@ else
   fi
 fi
 
-export WINEARCH=win64
-export WINEPREFIX=/serverdata/serverfiles/WINE64
-echo "---Checking if WINE workdirectory is present---"
-if [ ! -d ${SERVER_DIR}/WINE64 ]; then
-  echo "---WINE workdirectory not found, creating please wait...---"
-  mkdir ${SERVER_DIR}/WINE64
-else
-  echo "---WINE workdirectory found---"
-fi
-echo "---Checking if WINE is properly installed---"
-if [ ! -d ${SERVER_DIR}/WINE64/drive_c/windows ]; then
-  echo "---Setting up WINE---"
-  cd ${SERVER_DIR}
-  winecfg > /dev/null 2>&1
-  sleep 15
-else
-  echo "---WINE properly set up---"
-fi
+#export WINEARCH=win64
+#export WINEPREFIX=/serverdata/serverfiles/WINE64
+#echo "---Checking if WINE workdirectory is present---"
+#if [ ! -d ${SERVER_DIR}/WINE64 ]; then
+#  echo "---WINE workdirectory not found, creating please wait...---"
+#  mkdir ${SERVER_DIR}/WINE64
+#else
+#  echo "---WINE workdirectory found---"
+#fi
+#echo "---Checking if WINE is properly installed---"
+#if [ ! -d ${SERVER_DIR}/WINE64/drive_c/windows ]; then
+#  echo "---Setting up WINE---"
+#  cd ${SERVER_DIR}
+#  winecfg > /dev/null 2>&1
+#  sleep 15
+#else
+#  echo "---WINE properly set up---"
+#fi
 echo "---Prepare Server---"
 chmod -R ${DATA_PERM} ${DATA_DIR}
 
 echo "---Server ready---"
 
 echo "---Start Server---"
-SERVER_EXE="${SERVER_DIR}/R5/Binaries/Win64/WindroseServer-Win64-Shipping.exe"
+SERVER_EXE="${SERVER_DIR}/R5/Binaries/Linux/WindroseServer-Linux-Shipping"
 
 if [ -z "$SERVER_EXE" ]; then
   echo "ERROR: Windrose server executable not found"
