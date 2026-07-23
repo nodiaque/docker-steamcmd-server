@@ -4,7 +4,9 @@ LABEL org.opencontainers.image.authors="nodiaque-github@abinemail.com"
 LABEL org.opencontainers.image.source="https://github.com/nodiaque/docker-steamcmd-server"
 
 RUN apt-get update && \
-	apt-get -y install lib32gcc-s1 && \
+	apt-get install -y ca-certificates && \
+	update-ca-certificates && \
+	apt-get install -y libcurl4 && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/serverdata"
