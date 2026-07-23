@@ -6,7 +6,7 @@ LABEL org.opencontainers.image.source="https://github.com/nodiaque/docker-steamc
 RUN apt-get update && \
 	apt-get install -y ca-certificates && \
 	update-ca-certificates && \
-	apt-get install -y libcurl4 && \
+	apt-get install -y libcurl4 lib32gcc-s1 && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/serverdata"
