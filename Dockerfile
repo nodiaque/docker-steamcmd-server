@@ -35,7 +35,7 @@ ENV DATA_PERM=770
 #	ulimit -n 2048
 
 ADD /scripts/ /tmp/scripts/
-RUN chmod a+X /tmp/scripts/
+RUN su chmod a+X /tmp/scripts/
 
 #Server Start
 ENTRYPOINT ["/tmp/scripts/start.sh"]
