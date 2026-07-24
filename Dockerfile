@@ -35,7 +35,7 @@ RUN useradd --create-home -d $HOME_DIR -s /bin/bash $USER && \
 ADD /serverdata/ $DATA_DIR
 
 ADD /scripts/ /opt/scripts/
-RUN chmod 770 /opt/scripts/
+RUN chmod 777 /opt/scripts/
 
 #Server Start
 ENTRYPOINT ["/opt/scripts/start.sh"]
