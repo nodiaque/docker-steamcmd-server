@@ -1,6 +1,5 @@
 #FROM ich777/winehq-baseimage
 FROM windroseserver/windroseserver:latest
-ENTRYPOINT []
 
 LABEL org.opencontainers.image.authors="nodiaque-github@abinemail.com"
 LABEL org.opencontainers.image.source="https://github.com/nodiaque/docker-steamcmd-server"
