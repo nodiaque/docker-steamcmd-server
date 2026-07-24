@@ -1,13 +1,13 @@
 #FROM ich777/winehq-baseimage
-FROM ich777/debian-baseimage
+FROM windroseserver/windroseserver:latest
 LABEL org.opencontainers.image.authors="nodiaque-github@abinemail.com"
 LABEL org.opencontainers.image.source="https://github.com/nodiaque/docker-steamcmd-server"
 
-RUN apt-get update && \
-	apt-get install -y ca-certificates && \
-	update-ca-certificates && \
-	apt-get install -y libcurl4 lib32gcc-s1 && \
-	rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && \
+#	apt-get install -y ca-certificates && \
+#	update-ca-certificates && \
+#	apt-get install -y libcurl4 lib32gcc-s1 && \
+#	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/serverdata"
 ENV STEAMCMD_DIR="${DATA_DIR}/steamcmd"
