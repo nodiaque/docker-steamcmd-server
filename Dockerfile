@@ -27,13 +27,14 @@ ENV PASSWRD=""
 ENV USER="ue_user"
 ENV DATA_PERM=770
 #ENV WINEDEBUG=-all
+RUN useradd -d $HOME_DIR -s /bin/bash $USER && \
+	chown -R $USER $HOME_DIR && \
+	ulimit -n 2048
 
 RUN mkdir $DATA_DIR && \
 	mkdir $STEAMCMD_DIR && \
-	mkdir $SERVER_DIR && \
-	useradd -d $HOME_DIR -s /bin/bash $USER && \
-	chown -R $USER $HOME_DIR && \
-	ulimit -n 2048
+	mkdir $SERVER_DIR &&
+	
 
 ADD /serverdata/ $DATA_DIR
 
