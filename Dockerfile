@@ -1,12 +1,9 @@
 #FROM ich777/winehq-baseimage
 FROM windroseserver/windroseserver:latest
+ENTRYPOINT []
+
 LABEL org.opencontainers.image.authors="nodiaque-github@abinemail.com"
 LABEL org.opencontainers.image.source="https://github.com/nodiaque/docker-steamcmd-server"
-
-RUN kill 14
-RUN kill 7
-RUN kill 1
-
 
 #RUN apt-get update && \
 #	apt-get install -y ca-certificates && \
@@ -37,8 +34,8 @@ RUN usermod -u ${UID} ${USER}
 #	chown -R $USER $DATA_DIR && \
 #	ulimit -n 2048
 
-ADD /scripts/ /home/ue_user/scripts/
-#RUN chmod -R 770 /home/ue_user/scripts/
+ADD /scripts/ /tmp/scripts/
+RUN chmod -R 770 /tmp/scripts/
 
 #Server Start
-ENTRYPOINT ["/home/ue_user/scripts/start.sh"]
+ENTRYPOINT ["/tmp/scripts/start.sh"]
