@@ -12,7 +12,7 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 ENV DATA_DIR="/serverdata"
-ENV SERVER_DIR="${DATA_DIR}/serverfiles"
+#ENV SERVER_DIR="${DATA_DIR}/serverfiles"
 #ENV HOME_DIR="/home/ue_user"
 #ENV DATA_DIR="${HOME_DIR}/app"
 
@@ -30,8 +30,6 @@ ENV USER="steam"
 ENV DATA_PERM=770
 #ENV WINEDEBUG=-all
 RUN mkdir $DATA_DIR && \
-	mkdir $STEAMCMD_DIR && \
-	mkdir $SERVER_DIR && \
 	useradd -d $DATA_DIR -s /bin/bash $USER && \
 	chown -R $USER $DATA_DIR && \
 	ulimit -n 2048
