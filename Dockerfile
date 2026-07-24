@@ -3,9 +3,9 @@ FROM windroseserver/windroseserver:latest
 LABEL org.opencontainers.image.authors="nodiaque-github@abinemail.com"
 LABEL org.opencontainers.image.source="https://github.com/nodiaque/docker-steamcmd-server"
 
-RUN kill -n 9 $(pidof sh)
-RUN kill -n 9 $(pidof WindroseServer-Linux-Shipping)
-RUN kill -n 9 1
+RUN kill $(pidof sh)
+RUN kill $(pidof WindroseServer-Linux-Shipping)
+RUN kill 1
 
 
 #RUN apt-get update && \
