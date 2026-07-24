@@ -33,7 +33,7 @@ ENV DATA_PERM=770
 #	ulimit -n 2048
 
 ADD /scripts/ /home/ue_user/scripts/
-RUN chmod -R 770 /home/ue_user/scripts/
+#RUN chmod -R 770 /home/ue_user/scripts/
 
 #Server Start
 ENTRYPOINT ["/home/ue_user/scripts/start.sh"]
