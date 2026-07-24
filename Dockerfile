@@ -36,7 +36,7 @@ RUN mkdir $DATA_DIR && \
 	ulimit -n 2048
 
 ADD /serverdata/ $DATA_DIR
-RUN chmod 770 $DATA_DIR
+
 ADD /scripts/ /opt/scripts/
 RUN chmod 770 /opt/scripts/
 
