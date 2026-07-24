@@ -55,13 +55,14 @@
 #fi
 
 echo "---Prepare Server---"
-chmod -R ${DATA_PERM} ${DATA_DIR}
+chmod -R ${DATA_PERM} ${CONFIG_FILE}
+chmod -R ${DATA_PERM} ${SAVE_DIR}
 
 echo "---Server ready---"
 
 echo "---Start Server---"
 #SERVER_EXE="${SERVER_DIR}/R5/Binaries/Linux/WindroseServer-Linux-Shipping"
-cd ~/app
+cd ${DATA_DIR}
 ./WindroseServer.sh
 
 #if [ -z "$SERVER_EXE" ]; then
