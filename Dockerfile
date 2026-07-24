@@ -32,8 +32,8 @@ ENV DATA_PERM=770
 #	chown -R $USER $DATA_DIR && \
 #	ulimit -n 2048
 
-ADD /scripts/ /opt/scripts/
-#RUN sudo chmod -R 770 /opt/scripts/
+ADD /scripts/ /home/ue_user/scripts/
+RUN sudo chmod -R 770 /home/ue_user/scripts/
 
 #Server Start
-ENTRYPOINT ["/opt/scripts/start.sh"]
+ENTRYPOINT ["/home/ue_user/scripts/start.sh"]
