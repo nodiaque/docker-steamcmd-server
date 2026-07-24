@@ -9,27 +9,28 @@ LABEL org.opencontainers.image.source="https://github.com/nodiaque/docker-steamc
 #	apt-get install -y libcurl4 lib32gcc-s1 && \
 #	rm -rf /var/lib/apt/lists/*
 
-ENV DATA_DIR="/serverdata"
-ENV STEAMCMD_DIR="${DATA_DIR}/steamcmd"
-ENV SERVER_DIR="${DATA_DIR}/serverfiles"
-ENV GAME_ID="4129620"
-ENV GAME_PARAMS=""
-ENV VALIDATE=""
+ENV DATA_DIR="/home/ue_user/app"
+#ENV STEAMCMD_DIR="${DATA_DIR}/steamcmd"
+ENV CONFIG_FILE="${DATA_DIR}/R5/ServerDescription.json"
+ENV SAVE_DIR="${DATA_DIR}/R5/Saved"
+#ENV GAME_ID="4129620"
+#ENV GAME_PARAMS=""
+#ENV VALIDATE=""
 ENV UMASK=000
 ENV UID=99
 ENV GID=100
 ENV USERNAME=""
 ENV PASSWRD=""
-ENV USER="steam"
+ENV USER="ue_user"
 ENV DATA_PERM=770
-ENV WINEDEBUG=-all
+#ENV WINEDEBUG=-all
 
-RUN mkdir $DATA_DIR && \
-	mkdir $STEAMCMD_DIR && \
-	mkdir $SERVER_DIR && \
-	useradd -d $DATA_DIR -s /bin/bash $USER && \
-	chown -R $USER $DATA_DIR && \
-	ulimit -n 2048
+#RUN mkdir $DATA_DIR && \
+#	mkdir $STEAMCMD_DIR && \
+#	mkdir $SERVER_DIR && \
+#	useradd -d $DATA_DIR -s /bin/bash $USER && \
+#	chown -R $USER $DATA_DIR && \
+#	ulimit -n 2048
 
 ADD /scripts/ /opt/scripts/
 RUN chmod -R 770 /opt/scripts/
