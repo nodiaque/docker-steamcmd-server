@@ -24,7 +24,7 @@ ENV UID=99
 ENV GID=100
 ENV USERNAME=""
 ENV PASSWRD=""
-ENV USER="ue_user"
+ENV USER="steam"
 ENV DATA_PERM=770
 #ENV WINEDEBUG=-all
 RUN useradd --create-home -d $HOME_DIR -s /bin/bash $USER && \
