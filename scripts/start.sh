@@ -26,8 +26,8 @@ chown -R ${UID}:${GID} ${DATA_DIR}
 
 echo "---Starting...---"
 term_handler() {
-	kill -SIGINT $(pidof WindroseServer-Win64-Shipping.exe)
-	tail --pid=$(pidof WindroseServer-Win64-Shipping.exe) -f 2>/dev/null
+	kill -SIGINT $(pidof WindroseServer-Linux-Shipping)
+	tail --pid=$(pidof WindroseServer-Linux-Shipping) -f 2>/dev/null
 	exit 143;
 }
 
