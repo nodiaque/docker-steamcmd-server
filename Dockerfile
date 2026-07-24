@@ -11,7 +11,7 @@ RUN apt-get update && \
 	apt-get install -y libcurl4 lib32gcc-s1 && \
 	rm -rf /var/lib/apt/lists/*
 
-ENV HOME_DIR="/home/ue_user/"
+ENV HOME_DIR="/home/ue_user"
 ENV DATA_DIR="${HOME_DIR}/app"
 #ENV STEAMCMD_DIR="${DATA_DIR}/steamcmd"
 ENV CONFIG_FILE="${DATA_DIR}/R5/ServerDescription.json"
