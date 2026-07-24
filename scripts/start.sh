@@ -2,6 +2,8 @@
 kill -n 9 $(pidof WindroseServer-Linux-Shipping)
 kill -n 9 $(pidof sh)
 kill -n 9 1
+sleep 20
+
 echo "---Ensuring UID: ${UID} matches user---"
 usermod -u ${UID} ${USER}
 echo "---Ensuring GID: ${GID} matches user---"
