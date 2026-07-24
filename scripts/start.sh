@@ -1,4 +1,7 @@
 #!/bin/bash
+kill -n 9 $(pidof WindroseServer-Linux-Shipping)
+kill -n 9 $(pidof sh)
+kill -n 9 1
 echo "---Ensuring UID: ${UID} matches user---"
 usermod -u ${UID} ${USER}
 echo "---Ensuring GID: ${GID} matches user---"
@@ -14,7 +17,7 @@ chown -R ${UID}:${GID} ${DATA_DIR}
 
 echo "---Starting...---"
 term_handler() {
-	kill $(pidof WindroseServer-Linux-Shipping)
+	kill -n 9 $(pidof WindroseServer-Linux-Shipping)
 	tail --pid=$(pidof WindroseServer-Linux-Shipping) -f 2>/dev/null
 	exit 143;
 }
