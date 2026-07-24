@@ -89,4 +89,4 @@ echo "Starting Windrose dedicated server"
 echo "Executable: $SERVER_EXE"
 
 cd ${SERVER_DIR}
-wine ${SERVER_EXE} -log ${GAME_PARAMS}
+${SERVER_EXE} -log ${GAME_PARAMS}
