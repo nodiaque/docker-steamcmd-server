@@ -26,7 +26,7 @@ ENV PASSWRD=""
 ENV USER="ue_user"
 ENV DATA_PERM=770
 #ENV WINEDEBUG=-all
-RUN usermod -u ${UID} ${USER}
+#RUN usermod -u ${UID} ${USER}
 #RUN mkdir $DATA_DIR && \
 #	mkdir $STEAMCMD_DIR && \
 #	mkdir $SERVER_DIR && \
@@ -35,7 +35,7 @@ RUN usermod -u ${UID} ${USER}
 #	ulimit -n 2048
 
 ADD /scripts/ /tmp/scripts/
-RUN chmod -R 770 /tmp/scripts/
+#RUN chmod -R 770 /tmp/scripts/
 
 #Server Start
 ENTRYPOINT ["/tmp/scripts/start.sh"]
